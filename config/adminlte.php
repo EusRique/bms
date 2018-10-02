@@ -30,9 +30,9 @@ return [
     |
     */
 
-    'logo' => '<b>BMS</b>',
+    'logo' => 'BMS',
 
-    'logo_mini' => '<b>BMS</b>LT',
+    'logo_mini' => '<b>BMS</b>',
 
     /*
     |--------------------------------------------------------------------------
@@ -45,7 +45,7 @@ return [
     |
     */
 
-    'skin' => 'blue',
+    'skin' => 'yellow-light',
 
     /*
     |--------------------------------------------------------------------------
@@ -110,9 +110,19 @@ return [
     'menu' => [
         'Menu',
         [
-            'text' => 'Profile',
-            'url'  => 'admin/settings',
-            'icon' => 'user',
+            'text' => 'Painel',
+            'url'  => 'admin',
+            'icon' => 'home',
+        ],
+        [
+            'text'      => 'Financeiro',
+            'icon'      => 'dollar',
+            'submenu'   => [
+                [
+                    'text'  => 'Movimentação Financeira',
+                    'url'   => 'admin/movimentacaoFinanceira',
+                    'icon'  => false                ]
+            ]
         ],
     ],
 
