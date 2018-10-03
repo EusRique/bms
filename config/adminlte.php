@@ -110,9 +110,20 @@ return [
     'menu' => [
         'Menu',
         [
-            'text' => 'Painel',
-            'url'  => 'admin',
-            'icon' => 'home',
+            'text'  => 'Painel',
+            'url'   => 'admin',
+            'icon'  => 'home',
+        ],
+        [
+            'text'      => 'Cadastro',
+            'icon'      => 'users',
+            'submenu'   => [
+                [
+                    'text'  => 'Cliente',
+                    'url'   => 'admin/cliente',
+                    'icon'      =>  false
+                ]
+            ]   
         ],
         [
             'text'      => 'Financeiro',
