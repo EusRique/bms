@@ -119,8 +119,8 @@ return [
             'icon'      => 'users',
             'submenu'   => [
                 [
-                    'text'  => 'Cliente',
-                    'url'   => 'admin/cliente',
+                    'text'  => 'Clientes',
+                    'url'   => 'admin/clientes',
                     'icon'      =>  false
                 ]
             ]   
