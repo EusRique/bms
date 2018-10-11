@@ -10,6 +10,7 @@ use App\Http\Requests\Painel\ClienteFormRequest;
 class ClienteController extends Controller
 {
     private $cliente;
+    private $totalPage = 15;
 
     public function __construct(Cliente $cliente)
     {
@@ -17,7 +18,7 @@ class ClienteController extends Controller
     }
     public function index()
     {
-        $clientes = $this->cliente->all();
+        $clientes = $this->cliente->paginate($this->totalPage);
 
         return view('admin.cliente.index', compact('clientes'));
     }
