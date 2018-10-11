@@ -11,8 +11,8 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <a href="{{ route('cliente.cadastrar') }}" class="btn btn-success"><i class="fa fa-plus"></i>
-                    Adicionar
+                <a href="{{ route('cliente.cadastrar-editar') }}" class="btn btn-success">
+                    <i class="fa fa-plus"></i>Adicionar
                 </a>
                 <div class="box-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
@@ -22,6 +22,13 @@
                         </div>
                     </div>
                 </div>
+                @if(isset($errors) && count($errors) > 0)
+                    <div class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <p>{{$error}}</p>
+                        @endforeach
+                    </div>
+                @endif
             </div>
     
             <div class="box-body table-responsive no-padding">
@@ -35,16 +42,30 @@
                             <th>email</th>
                             <th>Telefone</th>
                             <th>Situação</th>
+                            <th>Ações</th>
                         </tr>
+                        @foreach($clientes as $cliente)
                         <tr>
-                            <td>1</td>
-                            <td>Henrique</td>
-                            <td>Física</td>
-                            <td>Henrique</td>
-                            <td>h.camargo@gmail.com</td>
-                            <td>(41)9 98500692</td>
-                            <td>Ativo</td>
+                            <td>{{ $cliente->id }}</td>
+                            <td>{{ $cliente->nome }}</td>
+                            <td>{{ $cliente->tipoPessoa($cliente->tipo_pessoa) }}</td>
+                            <td>{{ $cliente->contato }}</td>
+                            <td>{{ $cliente->email }}</td>
+                            <td>{{ $cliente->telefone }}</td>
+                            <td>{{ $cliente->ativo($cliente->ativo) }}</td>
+                            <td>
+                                <div class="text-center">
+                                    <a href="{{ route('cliente.visualizar', $cliente->id) }}" class="btn btn btn-info"><i class="fa fa-search"></i></a>
+                                    <a href="{{ route('cliente.editar', $cliente->id) }}" class="btn btn btn-warning"><i class="fa fa-edit"></i></a>
+                                    <form style='display: inline-block;' method="POST" action="{{ route('cliente.deletar', $cliente->id)}}"
+                                        onsubmit=" return confirm('Confirma exclusão?')">
+                                        {{method_field('DELETE')}}{{csrf_field()}}
+                                        <button type="submit" class="btn btn btn-danger"><i class="fa fa-close"></i></button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>

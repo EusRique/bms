@@ -7,7 +7,7 @@ $("#selecionar").change(function() {
 
     if (this.value !== "") {
         secao = $('option[data-section][value="' + this.value + '"]', this).attr("data-section");
-      
+        console.log(secao);
         atual = campos.filter("[data-name=" + secao + "]");
       
         if (atual.length !== 0) {
