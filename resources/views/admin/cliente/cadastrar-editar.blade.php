@@ -29,7 +29,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="form-group">
-                            <label>Tipo Pessoa</label>
+                            <label>Tipo Pessoa <span class="obrigatorio">*</span></label>
                             <select name="tipo_pessoa" id="selecionar" class="form-control">
                                 @foreach($pessoas as $key => $pessoa)
                                     <option data-section="{{$key}}" value="{{$key}}"
@@ -43,8 +43,8 @@
                     </div>
                     <div class="col-md-4">
                         <div class="form-group">
-                            <div data-name="f"><label>Nome</label></div>
-                            <div data-name="j" class="hide"><label>Razão Social</label></div>
+                            <div data-name="f"><label>Nome <span class="obrigatorio">*</span></label></div>
+                            <div data-name="j" class="hide"><label>Razão Social <span class="obrigatorio">*</span></label></div>
                             <input type="text" name="nome" id="nome" class="form-control" value="{{$cliente->nome or old('nome')}}">              
                         </div>
                     </div>
@@ -210,6 +210,7 @@
             </div>
         </form>
     </div>
+    <link rel="stylesheet" href="<?php echo asset('css/bms.css')?>" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script type="text/javascript" src="<?php echo asset('js/cliente.js')?>"></script>
 @stop

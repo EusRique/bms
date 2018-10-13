@@ -14,7 +14,7 @@
                 <div class="container">
                     <div class="row">
                         <div id="filter-panel" class="collapse filter-panel">
-                            <div class="panel panel-default">
+                            <div class="panel cliente-panel panel-default">
                                 <div class="panel-body">
                                     <form action="{{ route('cliente.search') }}" class="form form-inline" role="form" method="POST">
                                         {!! csrf_field() !!}
@@ -117,4 +117,5 @@
         </div>
     </div>
  </div>
+ <link rel="stylesheet" href="<?php echo asset('css/bms.css')?>" type="text/css">
 @stop

@@ -25,7 +25,7 @@ class ClienteFormRequest extends FormRequest
     {
         return [
             'nome'      => 'required|min:3',
-            'cpf_cnpj'  => 'required'
+            //'cpf_cnpj'  => 'required'
         ];
     }
 
@@ -33,7 +33,7 @@ class ClienteFormRequest extends FormRequest
     {
         return [
             'nome.required'      => 'O campo nome é de preenchimento obrigatório',
-            'cpf_cnpj.required'  => 'O campo documento é de preenchimento obrigatório'
+            //'cpf_cnpj.required'  => 'O campo documento é de preenchimento obrigatório'
         ];
     }
 }
