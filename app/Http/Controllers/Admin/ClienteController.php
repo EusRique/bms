@@ -20,14 +20,18 @@ class ClienteController extends Controller
     {
         $clientes = $this->cliente->paginate($this->totalPage);
 
-        return view('admin.cliente.index', compact('clientes'));
+        $tipoPessoas = $this->cadastrar()->pessoas;
+
+        $ativos = $this->cadastrar()->ativos;
+
+        return view('admin.cliente.index', compact('clientes', 'tipoPessoas', 'ativos'));
     }
 
     public function cadastrar()
     {
         $pessoas = [
-            'f' => 'Pessoa Fisíca', 
-            'j' => 'Pessoa Jurídica'
+            'f' => 'Fisíca', 
+            'j' => 'Jurídica'
         ];
 
         $ativos = [
@@ -99,5 +103,18 @@ class ClienteController extends Controller
             return redirect()->route('admin.cliente');
         else
             return redirect()->route('admin.cliente', $id)->with(['errors' => 'Falha ao excluir registro']);
+    }
+
+    public function searchCliente(Request $request, Cliente $clientes)
+    {
+        $dataForm = $request->except('_token');
+
+        $clientes = $clientes->search($dataForm, $this->totalPage);
+
+        $tipoPessoas = $this->cadastrar()->pessoas;
+
+        $ativos = $this->cadastrar()->ativos;
+
+        return view('admin.cliente.index', compact('clientes', 'tipoPessoas', 'ativos', 'dataForm'));
     }
 }

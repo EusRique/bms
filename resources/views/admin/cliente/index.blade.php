@@ -11,17 +11,56 @@
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
-                <a href="{{ route('cliente.cadastrar-editar') }}" class="btn btn-success">
-                    <i class="fa fa-plus"></i>Adicionar
-                </a>
-                <div class="box-tools">
-                    <div class="input-group input-group-sm" style="width: 150px;">
-                        <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
-                        <div class="input-group-btn">
-                            <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                <div class="container">
+                    <div class="row">
+                        <div id="filter-panel" class="collapse filter-panel">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <form action="{{ route('cliente.search') }}" class="form form-inline" role="form" method="POST">
+                                        {!! csrf_field() !!}
+                                        <div class="form-group">
+                                            <input type="text" name="id" class="form-control" placeholder="ID">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="nome" class="form-control" placeholder="Nome | Razão Social">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="sobrenome" class="form-control" placeholder="Sobrenome | Nome Fantasia">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="text" name="cpf_cnpj" class="form-control" placeholder="CPF | CNPJ">
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="tipo_pessoa" id="pref-perpage" class="form-control">
+                                                <option value="">-- Pessoa --</option>
+                                                @foreach($tipoPessoas as $key => $pessoa)
+                                                    <option value="{{$key}}">{{ $pessoa }} </option>
+                                                @endforeach
+                                            </select>                                
+                                        </div>
+                                        <div class="form-group">
+                                            <select name="ativo" id="pref-perpage" class="form-control">
+                                                <option value="">-- Status --</option>
+                                                @foreach($ativos as $key => $ativo)
+                                                    
+                                                    <option value="{{$key}}">{{ $ativo }}</option>
+                                                @endforeach;
+                                            </select>                                
+                                        </div>
+                                        <button type="submit" class="btn btn-primary">Pesquisar</button>
+                                    </form>
+                                </div>
+                            </div>
                         </div>
+                        <a href="{{ route('cliente.cadastrar-editar') }}" class="btn btn-success">
+                            <i class="fa fa-plus"></i>Adicionar
+                        </a>   
+                        <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
+                            <span class="glyphicon glyphicon-cog"></span> Buscar
+                        </button>
                     </div>
                 </div>
+                
                 @if(isset($errors) && count($errors) > 0)
                     <div class="alert alert-danger">
                         @foreach($errors->all() as $error)
@@ -30,15 +69,15 @@
                     </div>
                 @endif
             </div>
-    
             <div class="box-body table-responsive no-padding">
                 <table class="table table-hover">
                     <tbody>
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
+                            <th>Nome | Razão Social</th>
                             <th>Tipo</th>
-                            <th>Contato</th>
+                            <th>CPF | CNPJ</th>
                             <th>email</th>
                             <th>Telefone</th>
                             <th>Situação</th>
@@ -48,8 +87,9 @@
                         <tr>
                             <td>{{ $cliente->id }}</td>
                             <td>{{ $cliente->nome }}</td>
+                            <td>{{ $cliente->sobrenome }}</td>
                             <td>{{ $cliente->tipoPessoa($cliente->tipo_pessoa) }}</td>
-                            <td>{{ $cliente->contato }}</td>
+                            <td>{{ $cliente->cpf_cnpj }}</td>
                             <td>{{ $cliente->email }}</td>
                             <td>{{ $cliente->telefone }}</td>
                             <td>{{ $cliente->ativo($cliente->ativo) }}</td>
@@ -68,7 +108,11 @@
                         @endforeach
                     </tbody>
                 </table>
-                {!! $clientes->links() !!}
+                @if(isset($dataForm))
+                    {!! $clientes->appends($dataForm)->links() !!}
+                @else
+                    {!! $clientes->links() !!}
+                @endif
             </div>
         </div>
     </div>

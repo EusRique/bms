@@ -35,7 +35,7 @@ class Cliente extends Model
 
         if ($tipo_pessoa == 'f' ) {
              
-            return 'Física'; 
+            return 'Fisíca'; 
         
         } else {
             return 'Jurídica';
@@ -59,5 +59,33 @@ class Cliente extends Model
         }
 
         return $ativo;
+    }
+
+    public function search(Array $data, $totalPage)
+    {
+        $clientes =  $this->where(function ($query) use ($data) {
+
+            if(isset($data['id']))
+                $query->where('id', $data['id']);
+
+            if (isset($data['nome']))
+                $query->where('nome', $data['nome']);
+            
+            if (isset($data['sobrenome']))
+                $query->where('sobrenome', $data['sobrenome']);
+            
+            if(isset($data['cpf_cnpj']))
+                $query->where('cpf_cnpj', $data['cpf_cnpj']);
+
+            if (isset($data['tipo_pessoa']))
+                $query->where('tipo_pessoa', $data['tipo_pessoa']);
+            
+            if (isset($data['ativo']))
+                $query->where('ativo', $data['ativo']);
+        })
+        ->paginate($totalPage);
+        //->toSql(); dd($clientes);
+
+        return $clientes;
     }
 }
