@@ -115,7 +115,7 @@ return [
             'icon'  => 'home',
         ],
         [
-            'text'      => 'Cadastro',
+            'text'      => 'Cadastros',
             'icon'      => 'users',
             'submenu'   => [
                 [
@@ -124,6 +124,22 @@ return [
                     'icon'      =>  false
                 ]
             ]   
+        ],
+        [
+            'text'      => 'Produtos',
+            'icon'      => 'barcode',
+            'submenu'   => [
+                [
+                    'text'  => 'Produtos',
+                    'url'   => 'admin/produtos',
+                    'icon'  => false,
+                ],
+                [
+                    'text'  => 'Grupo de Produtos',
+                    'url'   => 'admin/grupoProdutos',
+                    'icon'  => false,
+                ]
+            ]
         ],
         [
             'text'      => 'Financeiro',
