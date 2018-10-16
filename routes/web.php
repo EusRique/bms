@@ -9,12 +9,12 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     $this->get('produtos', 'ProdutoController@index')->name('admin.produto');
 
     $this->any('clientes-search', 'ClienteController@searchCliente')->name('cliente.search');
-    $this->delete('deletar/{id}', 'ClienteController@deletar')->name('cliente.deletar');
-    $this->put('editar/{id}', 'ClienteController@atualizar')->name('atualizar');
-    $this->get('editar/{id}', 'ClienteController@editar')->name('cliente.editar');
-    $this->get('visualizar/{id}', 'ClienteController@visualizar')->name('cliente.visualizar');
-    $this->post('cadastrar', 'ClienteController@adicionar')->name('adicionar');
-    $this->get('cadastrar', 'ClienteController@cadastrar')->name('cliente.cadastrar-editar');
+    $this->delete('clientes/deletar/{id}', 'ClienteController@deletar')->name('cliente.deletar');
+    $this->put('clientes/editar/{id}', 'ClienteController@atualizar')->name('atualizar');
+    $this->get('clientes/editar/{id}', 'ClienteController@editar')->name('cliente.editar');
+    $this->get('clientes/visualizar/{id}', 'ClienteController@visualizar')->name('cliente.visualizar');
+    $this->post('clientes/cadastrar', 'ClienteController@adicionar')->name('adicionar');
+    $this->get('clientes/cadastrar', 'ClienteController@cadastrar')->name('cliente.cadastrar-editar');
     $this->get('clientes', 'ClienteController@index')->name('admin.cliente');
     
     $this->get('movimentacaoFinanceira', 'FinanceiroController@index')->name('admin.financeiro'); 
