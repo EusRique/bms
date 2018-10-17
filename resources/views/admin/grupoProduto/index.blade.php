@@ -3,7 +3,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Produtos</h1>
+    <h1>Grupo de Produtos</h1>
 @stop
 
 @section('content')
@@ -29,9 +29,9 @@
                                 </div>
                             </div>
                         </div>
-                        <a href="{{ route('produto.cadastrar-editar') }}" class="btn btn-success">
+                        <a href="{{ route('grupoProduto.cadastrar-editar') }}" class="btn btn-success">
                             <i class="fa fa-plus"></i>Adicionar
-                        </a> 
+                        </a>   
                         <button type="button" class="btn btn-primary" data-toggle="collapse" data-target="#filter-panel">
                             <span class="glyphicon glyphicon-cog"></span> Buscar
                         </button>
@@ -48,17 +48,21 @@
                             <th>Situação</th>
                             <th>Ações</th>
                         </tr>
-                        
+                        @foreach($grupos as $grupo)
                         <tr>
-                            <td>1</td>
-                            <td>0001</td>
-                            <td>Descrição</td>
-                            <td>Situação</td>
+                            <td>{{$grupo->id}}</td>
+                            <td>{{$grupo->codigo}}</td>
+                            <td>{{$grupo->descricao}}</td>
+                            <td>{{$grupo->situacaoGrupo($grupo->situacao)}}</td>
                             <td>
                                 <div class="text-center">
-                                    <a href="" class="btn btn btn-info"><i class="fa fa-search"></i></a>
-                                    <a href="" class="btn btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    <form style='display: inline-block;' method="POST" action=""
+                                    <a href="{{ route('grupoProduto.visualizar', $grupo->id) }}" class="btn btn btn-info">
+                                        <i class="fa fa-search"></i>
+                                    </a>
+                                    <a href="{{ route('grupoProduto.editar', $grupo->id) }}" class="btn btn btn-warning">
+                                        <i class="fa fa-edit"></i>
+                                    </a>
+                                    <form style='display: inline-block;' method="POST" action="{{ route('grupoProduto.deletar', $grupo->id) }}"
                                         onsubmit=" return confirm('Confirma exclusão?')">
                                         {{method_field('DELETE')}}{{csrf_field()}}
                                         <button type="submit" class="btn btn btn-danger"><i class="fa fa-close"></i></button>
@@ -66,7 +70,7 @@
                                 </div>
                             </td>
                         </tr>
-                        
+                        @endforeach
                     </tbody>
                 </table>
             </div>
