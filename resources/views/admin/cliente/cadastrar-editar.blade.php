@@ -4,6 +4,19 @@
 
 @section('content_header')
     <h1>Cliente</h1>
+    @if(isset($cliente))
+        <ol class="breadcrumb">
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="#">Atualizar</a></li>
+        </ol>
+    @else
+        <ol class="breadcrumb">
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="#">Clientes</a></li>
+            <li><a href="#">Cadastrar</a></li>
+        </ol>
+    @endif
 @stop
 
 @section('content')

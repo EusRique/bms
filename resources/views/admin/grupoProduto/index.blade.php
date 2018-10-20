@@ -4,6 +4,10 @@
 
 @section('content_header')
     <h1>Grupo de Produtos</h1>
+    <ol class="breadcrumb">
+        <li><a href="/admin">Dashboard</a></li>
+        <li><a href="#">Grupo de Produtos</a></li>
+    </ol>
 @stop
 
 @section('content')
@@ -16,14 +20,23 @@
                         <div id="filter-panel" class="collapse filter-panel">
                             <div class="panel cliente-panel panel-default">
                                 <div class="panel-body">
-                                    <form action="" class="form form-inline" role="form" method="POST">
+                                    <form action="{{ route('grupoProduto.search') }}" class="form form-inline" role="form" method="POST">
                                         {!! csrf_field() !!}
                                         <div class="form-group">
                                             <input type="text" name="id" class="form-control" placeholder="ID">
                                         </div>
                                         <div class="form-group">
-                                            <input type="text" name="nome" class="form-control" placeholder="Nome | Razão Social">
+                                            <input type="text" name="codigo" class="form-control" placeholder="Código">
                                         </div>
+                                        <div class="form-group">
+                                            <input type="text" name="descricao" class="form-control" placeholder="Nome | Razão Social">
+                                        </div>
+                                        <select name="situacao" id="pref-perpage" class="form-control">
+                                            <option value="">-- Situação --</option>
+                                            @foreach($ativos as $key => $ativo)
+                                                <option value="{{$key}}">{{ $ativo }}</option>
+                                            @endforeach
+                                        </select>
                                         <button type="submit" class="btn btn-primary">Pesquisar</button>
                                     </form>
                                 </div>
@@ -73,8 +86,14 @@
                         @endforeach
                     </tbody>
                 </table>
+                @if(isset($dataForm))
+                    {!! $grupos->appends($dataForm)->links() !!}
+                @else
+                    {!! $grupos->links() !!}
+                @endif
             </div>
         </div>
     </div>
 </div>
+<link rel="stylesheet" href="<?php echo asset('css/bms.css')?>" type="text/css">
 @stop

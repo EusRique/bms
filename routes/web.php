@@ -4,6 +4,7 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     /*Primeiro parametro URL, segundo nome da função e terceiro nome pasta arquivo.blade.php (GET)
     e quando for POST o parametro passado no form*/
     
+    $this->any('grupoProduto/search', 'GrupoProdutoController@searchGrupo')->name('grupoProduto.search');
     $this->delete('grupoProdutos/deletar/{id}', 'GrupoProdutoController@deletar')->name('grupoProduto.deletar');
     $this->put('grupoProdutos/editar/{id}', 'GrupoProdutoController@atualizar')->name('grupoProduto.atualizar');
     $this->get('grupoProdutos/editar/{id}', 'GrupoProdutoController@editar')->name('grupoProduto.editar');

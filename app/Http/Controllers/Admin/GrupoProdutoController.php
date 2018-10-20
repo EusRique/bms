@@ -10,6 +10,7 @@ use App\Http\Requests\Painel\GrupoProdutoFormRequest;
 class GrupoProdutoController extends Controller
 {
     private $grupoProduto;
+    private $totalPage = 15;
 
     public function __construct(GrupoProduto $grupoProduto)
     {
@@ -18,9 +19,11 @@ class GrupoProdutoController extends Controller
 
     public function index()
     {
-        $grupos = $this->grupoProduto->all();
+        $grupos = $this->grupoProduto->paginate($this->totalPage);
 
-        return view('admin.grupoProduto.index', compact('grupos'));
+        $ativos = $this->cadastrar()->ativos;
+
+        return view('admin.grupoProduto.index', compact('grupos', 'ativos'));
     }
 
     public function cadastrar()
@@ -88,5 +91,16 @@ class GrupoProdutoController extends Controller
             return redirect()->route('admin.grupoProduto');
         else
             return redirect()->route('admin.grupoProduto', $id)->with(['errors' => 'Falha ao excluir registro']);
+    }
+
+    public function searchGrupo(Request $request, GrupoProduto $grupoProduto )
+    {
+        $dataForm = $request->except('_token');
+        
+        $grupos = $grupoProduto->search($dataForm, $this->totalPage);
+        
+        $ativos = $this->cadastrar()->ativos;
+        
+        return view('admin.grupoProduto.index', compact('dataForm', 'grupos', 'ativos'));
     }
 }

@@ -4,6 +4,19 @@
 
 @section('content_header')
     <h1>Grupo de Produtos</h1>
+    @if(isset($grupo))
+        <ol class="breadcrumb">
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="#">Grupo de Produtos</a></li>
+            <li><a href="#">Atualizar</a></li>
+        </ol>
+    @else
+        <ol class="breadcrumb">
+            <li><a href="/admin">Dashboard</a></li>
+            <li><a href="#">Grupo de Produtos</a></li>
+            <li><a href="#">Cadastrar</a></li>
+        </ol>
+    @endif
 @stop
 
 @section('content')
