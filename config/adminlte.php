@@ -138,7 +138,12 @@ return [
                     'text'  => 'Grupo de Produtos',
                     'url'   => 'admin/grupoProdutos',
                     'icon'  => false,
-                ]
+                ],
+                [
+                    'text'  => 'Unidades de produtos',
+                    'url'   => 'admin/unidadeProdutos',
+                    'icon'  => false,
+                ],
             ]
         ],
         [

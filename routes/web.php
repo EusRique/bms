@@ -3,7 +3,17 @@
 $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'admin'], function(){
     /*Primeiro parametro URL, segundo nome da função e terceiro nome pasta arquivo.blade.php (GET)
     e quando for POST o parametro passado no form*/
-    
+
+    $this->any('unidadeProdutos/search', 'UnidadeProdutosController@searchUnidade')->name('unidadeProdutos.search');
+    $this->delete('unidadeProdutos/deletar/{id}', 'UnidadeProdutosController@deletar')->name('unidadeProdutos.deletar');
+    $this->put('unidadeProdutos/editar/{id}', 'UnidadeProdutosController@atualizar')->name('unidadeProdutos.atualizar');
+    $this->get('unidadeProdutos/editar/{id}', 'UnidadeProdutosController@editar')->name('unidadeProdutos.editar');
+    $this->get('unidadeProdutos/editar/{id}', 'UnidadeProdutosController@editar')->name('unidadeProdutos.editar');
+    $this->get('unidadeProdutos/visualizar/{id}', 'UnidadeProdutosController@visualizar')->name('unidadeProdutos.visualizar');
+    $this->post('unidadeProdutos/cadastrar', 'UnidadeProdutosController@adicionar')->name('unidadeProdutos.adicionar');
+    $this->get('unidadeProdutos/cadastrar', 'UnidadeProdutosController@cadastrar')->name('unidadeProdutos.cadastrar-editar');
+    $this->get('unidadeProdutos', 'UnidadeProdutosController@index')->name('admin.unidadeProdutos');
+
     $this->any('grupoProduto/search', 'GrupoProdutoController@searchGrupo')->name('grupoProduto.search');
     $this->delete('grupoProdutos/deletar/{id}', 'GrupoProdutoController@deletar')->name('grupoProduto.deletar');
     $this->put('grupoProdutos/editar/{id}', 'GrupoProdutoController@atualizar')->name('grupoProduto.atualizar');

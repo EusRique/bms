@@ -3,17 +3,17 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Grupo de Produtos</h1>
-    @if(isset($grupo))
+    <h1>Unidade de Produto</h1>
+    @if(isset($unidadeProdutos))
         <ol class="breadcrumb">
             <li><a href="/admin">Dashboard</a></li>
-            <li><a href="#">Grupo de Produtos</a></li>
+            <li><a href="#">Unidade de Produto</a></li>
             <li><a href="#">Atualizar</a></li>
         </ol>
     @else
         <ol class="breadcrumb">
             <li><a href="/admin">Dashboard</a></li>
-            <li><a href="#">Grupo de Produtos</a></li>
+            <li><a href="#">Unidade de Produto</a></li>
             <li><a href="#">Cadastrar</a></li>
         </ol>
     @endif
@@ -22,7 +22,7 @@
 @section('content')
     <div class="box box-warning">
         <div class="box-header with-border">
-            <h3 class="box-title">Grupo de Produtos</h3>
+            <h3 class="box-title">Unidades de Produto</h3>
             @if(isset($errors) && count($errors) > 0)
                 <div class="alert alert-danger">
                     @foreach($errors->all() as $error)
@@ -31,11 +31,11 @@
                 </div>
             @endif
         </div>
-        @if(isset($grupo))
-        <form action="{{ route('grupoProduto.atualizar', $grupo->id) }}" method="POST">
+        @if(isset($unidadeProdutos))
+        <form action="{{ route('unidadeProdutos.atualizar', $unidadeProdutos->id) }}" method="POST">
             {!! method_field('PUT') !!}
         @else
-        <form action="{{ route('grupoProduto.adicionar') }}" method="POST">
+        <form action="{{ route('unidadeProdutos.adicionar') }}" method="POST">
         @endif
             {!! csrf_field() !!}
             <div class="box-body">
@@ -43,16 +43,16 @@
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-group">
-                                <label>Código</label>
-                                <input type="text" name="codigo" id="codigo" class="form-control" value="{{$grupo->codigo or old('codigo')}}">              
+                                <label>Nome</label>
+                                <input type="text" name="nome" id="nome" class="form-control" value="{{$unidadeProdutos->nome or old('Nome')}}">              
                             </div>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="form-group">
                             <div class="form-group">
-                                <label>Descrição</label>
-                                <input type="text" name="descricao" id="descricao" class="form-control" value="{{$grupo->descricao or old('descricao')}}">              
+                                <label>Sigla</label>
+                                <input type="text" name="sigla" id="sigla" class="form-control" value="{{$unidadeProdutos->sigla or old('Sigla')}}">              
                             </div>
                         </div>
                     </div>
@@ -63,13 +63,13 @@
                     <div class="col-md-4">
                         <div class="form-group">
                             <label>Situação</label>
-                            <select name="situacao" id="situacao" class="form-control">
+                            <select name="ativo" id="ativo" class="form-control">
                                 @foreach($ativos as $key => $ativo)
                                     <option value="{{$key}}"
-                                        @if(isset($grupo) && $grupo->situacao == $key)
-                                            selected
-                                        @endif;
-                                        >{{$ativo}}</option>
+                                        @if(isset($unidadeProdutos) && $unidadeProdutos->ativo == $key)
+                                        selected
+                                        @endif
+                                    >{{$ativo}}</option>
                                 @endforeach
                             </select>
                         </div>
