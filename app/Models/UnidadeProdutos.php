@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Produtos;
 use DB;
 
 class UnidadeProdutos extends Model
@@ -12,6 +13,11 @@ class UnidadeProdutos extends Model
         'sigla',
         'ativo'
     ];
+
+    public function produtos()
+    {
+        $this->hasMany(Produto::class, 'id', 'grupo_produtos_id');
+    }
 
     public function situacaoUnidadeProduto()
     {
@@ -23,6 +29,13 @@ class UnidadeProdutos extends Model
             return 'Ativo';
         
         return $ativo;
+    }
+
+    public function listaUnidade()
+    {
+        $unidade = UnidadeProdutos::all();
+
+        return $unidade;
     }
 
     public function search(Array $data, $totalPage)

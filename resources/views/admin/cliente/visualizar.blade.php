@@ -110,4 +110,5 @@
             </div>
         </div>
     </div>
+    <link rel="stylesheet" href="<?php echo asset('css/bms.css')?>" type="text/css">
 @stop

@@ -4,10 +4,17 @@ $this->group(['middleware' => ['auth'], 'namespace' => 'Admin', 'prefix' => 'adm
     /*Primeiro parametro URL, segundo nome da função e terceiro nome pasta arquivo.blade.php (GET)
     e quando for POST o parametro passado no form*/
 
+    $this->any('produtos/deletar/{id}', 'ProdutoController@deletar')->name('produto.deletar');
+    $this->put('produtos/editar/{id}', 'ProdutoController@atualizar')->name('produto.atualizar');
+    $this->get('produtos/editar/{id}', 'ProdutoController@editar')->name('produto.editar');
+    $this->get('produtos/visualizar/{id}', 'ProdutoController@visualizar')->name('produto.visualizar');
+    $this->post('produtos/adicionar', 'ProdutoController@adicionar')->name('produto.adicionar');
+    $this->get('produtos/cadastrar', 'ProdutoController@cadastrar')->name('produto.cadastrar');
+    $this->get('produtos', 'ProdutoController@index')->name('admin.produto');
+
     $this->any('unidadeProdutos/search', 'UnidadeProdutosController@searchUnidade')->name('unidadeProdutos.search');
     $this->delete('unidadeProdutos/deletar/{id}', 'UnidadeProdutosController@deletar')->name('unidadeProdutos.deletar');
     $this->put('unidadeProdutos/editar/{id}', 'UnidadeProdutosController@atualizar')->name('unidadeProdutos.atualizar');
-    $this->get('unidadeProdutos/editar/{id}', 'UnidadeProdutosController@editar')->name('unidadeProdutos.editar');
     $this->get('unidadeProdutos/editar/{id}', 'UnidadeProdutosController@editar')->name('unidadeProdutos.editar');
     $this->get('unidadeProdutos/visualizar/{id}', 'UnidadeProdutosController@visualizar')->name('unidadeProdutos.visualizar');
     $this->post('unidadeProdutos/cadastrar', 'UnidadeProdutosController@adicionar')->name('unidadeProdutos.adicionar');

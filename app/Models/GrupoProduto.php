@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Models;
+
+use App\Models\Produto;
 use DB;
 
 use Illuminate\Database\Eloquent\Model;
@@ -13,6 +15,11 @@ class GrupoProduto extends Model
         'situacao'
     ];
 
+    public function produtos()
+    {
+        return $this->hasMany(Produto::class,'id', 'grupo_produtos_id');
+    }
+    
     public function situacaoGrupo($situacao = null)
     {
         $situacao = $this->situacao;
@@ -27,6 +34,13 @@ class GrupoProduto extends Model
         }
 
         return $situacao;
+    }
+
+    public function listaGrupos(){
+        
+        $grupos = GrupoProduto::all();
+
+        return $grupos;
     }
 
     public function search(Array $data, $totalPage)
