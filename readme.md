@@ -7,7 +7,7 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Business Management System (BMS)
+## Business Management System (BMS - Em desenvolvimento)
 
 Sistema de Gerenciamento
 <ul>
@@ -19,3 +19,8 @@ Sistema de Gerenciamento
   <li>Controle de almoxarifado e receitas</li>
   <li>Relatórios financeiross</li>
 </ul>
+
+## Configurações do projeto
+
+composer install </br>
+configurar o arquivo .env
