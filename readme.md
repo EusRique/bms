@@ -22,5 +22,5 @@ Sistema de Gerenciamento
 
 ## Configurações do projeto
 
-composer install </br>
+composer install (composer update)</br>
 configurar o arquivo .env
